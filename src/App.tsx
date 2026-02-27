@@ -123,7 +123,7 @@ export default function App() {
 
   const analyzeDataWithGemini = async (sampleData: any[], headers: string[], totalRows: number) => {
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const ai = new GoogleGenAI({apiKey: import.meta.env.VITE_GEMINI_API_KEY});
       
       const prompt = `
 Act as the "Pami Automate Universal Intelligence Engine." Your goal is to function as an advanced Data Scientist and UI/UX Strategy Expert capable of analyzing ANY dataset provided.
