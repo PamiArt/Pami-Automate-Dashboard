@@ -95,11 +95,11 @@ export default function App() {
           headers = Object.keys(data[0] as object);
         }
       } else {
-        throw new Error("Format fail tidak disokong. Sila muat naik CSV, Excel, atau JSON.");
+        throw new Error("Unsupported file format. Please upload CSV, Excel, or JSON.");
       }
 
       if (data.length === 0) {
-        throw new Error("Fail kosong atau format tidak sah.");
+        throw new Error("File is empty or format is invalid.");
       }
 
       setFileInfo({
@@ -116,7 +116,7 @@ export default function App() {
 
     } catch (err: any) {
       console.error(err);
-      setError(err.message || "Ralat semasa memproses fail. Sila cuba lagi.");
+      setError(err.message || "Error processing file. Please try again.");
       setIsAnalyzing(false);
     }
   };
@@ -158,8 +158,8 @@ DATA FOR VISUALIZATION:
 - comparison_data: Ranking of the top-performing entities/categories in the data.
 
 TONE & LANGUAGE:
-All narrative text MUST be in professional Bahasa Melayu.
-Use "Cyber-Industrial" terminology (e.g., 'Sintesis Data', 'Automasi Intelek', 'Nadi Operasi').
+All narrative text MUST be in professional English.
+Use "Cyber-Industrial" terminology (e.g., 'Data Synthesis', 'Intel Automata', 'Operational Core').
 
 CONSTRAINTS:
 Format all financial values in RM (if currency is detected) or appropriate units.
@@ -252,11 +252,11 @@ Return ONLY a valid JSON object matching the requested schema.
         const result = JSON.parse(jsonStr) as AnalysisResult;
         setAnalysisResult(result);
       } else {
-        throw new Error("Gagal mendapatkan respons dari Pami Automate.");
+        throw new Error("Failed to get response from Pami Automate.");
       }
     } catch (err: any) {
       console.error(err);
-      setError("Ralat semasa sintesis data: " + (err.message || "Sila cuba lagi."));
+      setError("Error during data synthesis: " + (err.message || "Please try again."));
     } finally {
       setIsAnalyzing(false);
     }
@@ -303,7 +303,7 @@ Return ONLY a valid JSON object matching the requested schema.
           <div className="flex items-center gap-4 text-sm font-mono text-gray-500">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              Sistem Aktif
+              System Active
             </span>
           </div>
         </div>
@@ -317,8 +317,8 @@ Return ONLY a valid JSON object matching the requested schema.
             className="max-w-2xl mx-auto mt-12"
           >
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-mono font-bold text-white mb-4">Inisialisasi Nadi Operasi</h2>
-              <p className="text-gray-400">Muat naik set data anda untuk memulakan proses Automasi Intelek dan Sintesis Data.</p>
+              <h2 className="text-3xl font-mono font-bold text-white mb-4">Initialize Operational Core</h2>
+              <p className="text-gray-400">Upload your dataset to begin Intel Automata and Data Synthesis.</p>
             </div>
 
             <div
@@ -346,8 +346,8 @@ Return ONLY a valid JSON object matching the requested schema.
                   <UploadCloud className="w-8 h-8" />
                 </div>
                 <div>
-                  <p className="text-lg font-medium text-white mb-1">Tarik & Lepas Fail Di Sini</p>
-                  <p className="text-sm text-gray-500">Sokongan format: CSV, Excel (.xlsx), JSON</p>
+                  <p className="text-lg font-medium text-white mb-1">Drag & Drop File Here</p>
+                  <p className="text-sm text-gray-500">Supported formats: CSV, Excel (.xlsx), JSON</p>
                 </div>
               </div>
             </div>
@@ -369,14 +369,14 @@ Return ONLY a valid JSON object matching the requested schema.
               <div className="absolute inset-4 rounded-full border-b-2 border-purple-500 animate-spin"></div>
               <Activity className="absolute inset-0 m-auto w-8 h-8 text-emerald-400 animate-pulse" />
             </div>
-            <h3 className="text-xl font-mono font-bold text-white mb-2">Memproses Nadi Operasi...</h3>
-            <p className="text-gray-400 font-mono text-sm animate-pulse">Sintesis Data Sedang Berjalan</p>
+            <h3 className="text-xl font-mono font-bold text-white mb-2">Processing Operational Core...</h3>
+            <p className="text-gray-400 font-mono text-sm animate-pulse">Data Synthesis in Progress</p>
             
             {fileInfo && (
               <div className="mt-8 flex gap-6 text-sm font-mono text-gray-500">
                 <span className="flex items-center gap-2"><FileText className="w-4 h-4" /> {fileInfo.name}</span>
-                <span className="flex items-center gap-2"><Database className="w-4 h-4" /> {fileInfo.rows} Rekod</span>
-                <span className="flex items-center gap-2"><BarChart3 className="w-4 h-4" /> {fileInfo.columns} Pembolehubah</span>
+                <span className="flex items-center gap-2"><Database className="w-4 h-4" /> {fileInfo.rows} Records</span>
+                <span className="flex items-center gap-2"><BarChart3 className="w-4 h-4" /> {fileInfo.columns} Variables</span>
               </div>
             )}
           </div>
@@ -391,20 +391,20 @@ Return ONLY a valid JSON object matching the requested schema.
             {/* Context & Top Metrics */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <Card className="lg:col-span-1 flex flex-col justify-center">
-                <SectionHeader icon={Database} title="Klasifikasi Data" subtitle="Sintesis Konteks" />
+                <SectionHeader icon={Database} title="Data Classification" subtitle="Context Synthesis" />
                 <div className="space-y-4">
                   <div>
-                    <p className="text-xs font-mono text-gray-500 uppercase mb-1">Identiti Dataset</p>
+                    <p className="text-xs font-mono text-gray-500 uppercase mb-1">Dataset Identity</p>
                     <p className="text-lg font-medium text-emerald-400">{analysisResult.context.classification}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-mono text-gray-500 uppercase mb-1">Skop Operasi</p>
+                    <p className="text-xs font-mono text-gray-500 uppercase mb-1">Operational Scope</p>
                     <p className="text-sm text-gray-300 leading-relaxed">{analysisResult.context.overview}</p>
                   </div>
                   {fileInfo && (
                      <div className="pt-4 border-t border-white/5 flex justify-between text-xs font-mono text-gray-500">
-                       <span>{fileInfo.rows} REKOD</span>
-                       <span>{fileInfo.columns} PEMBOLEHUBAH</span>
+                       <span>{fileInfo.rows} RECORDS</span>
+                       <span>{fileInfo.columns} VARIABLES</span>
                      </div>
                   )}
                 </div>
@@ -427,7 +427,7 @@ Return ONLY a valid JSON object matching the requested schema.
             {/* Visualizations */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
-                <SectionHeader icon={TrendingUp} title="Projeksi Trend" subtitle="Analisis Siri Masa / Jujukan" />
+                <SectionHeader icon={TrendingUp} title="Trend Projection" subtitle="Time-Series Analysis" />
                 <div className="h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={analysisResult.visualization.trend_data}>
@@ -445,7 +445,7 @@ Return ONLY a valid JSON object matching the requested schema.
               </Card>
 
               <Card>
-                <SectionHeader icon={BarChart3} title="Perbandingan Entiti" subtitle="Ranking Prestasi Tertinggi" />
+                <SectionHeader icon={BarChart3} title="Entity Comparison" subtitle="Top Performance Ranking" />
                 <div className="h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={analysisResult.visualization.comparison_data} layout="vertical" margin={{ left: 20 }}>
@@ -463,7 +463,7 @@ Return ONLY a valid JSON object matching the requested schema.
               </Card>
 
               <Card className="lg:col-span-2">
-                <SectionHeader icon={PieChart} title="Komposisi Data" subtitle="Taburan Kategori" />
+                <SectionHeader icon={PieChart} title="Data Composition" subtitle="Category Distribution" />
                 <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
                     <RechartsPieChart>
@@ -494,7 +494,7 @@ Return ONLY a valid JSON object matching the requested schema.
             {/* Insights & Recommendations */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
-                <SectionHeader icon={Zap} title="Sintesis Intelek" subtitle="Korelasi & Penemuan Utama" />
+                <SectionHeader icon={Zap} title="Intel Synthesis" subtitle="Correlations & Key Findings" />
                 <div className="space-y-4">
                   {analysisResult.insights.map((insight, idx) => (
                     <div key={idx} className="flex gap-4 items-start p-4 rounded-lg bg-white/5 border border-white/5">
@@ -508,7 +508,7 @@ Return ONLY a valid JSON object matching the requested schema.
               </Card>
 
               <Card>
-                <SectionHeader icon={Activity} title="Projeksi Strategik" subtitle="Cadangan Pengoptimuman" />
+                <SectionHeader icon={Activity} title="Strategic Projection" subtitle="Optimization Recommendations" />
                 <div className="space-y-4">
                   {analysisResult.recommendations.map((rec, idx) => (
                     <div key={idx} className="flex gap-4 items-start p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
@@ -530,7 +530,7 @@ Return ONLY a valid JSON object matching the requested schema.
                 }}
                 className="px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-mono transition-colors"
               >
-                Muat Naik Dataset Baharu
+                Upload New Dataset
               </button>
             </div>
           </motion.div>
