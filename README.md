@@ -1,5 +1,5 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/PamiArt/exabyte_bridge/blob/main/Gemini_Generated_Image_9ps9ve9ps9ve9ps9.png?raw=true" />
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/PamiArt/exabyte_bridge/blob/main/IMG_20260308_013922.png?raw=true" />
 </div>
 
 # Run and deploy
